@@ -21,7 +21,7 @@ const getallcategory = async (req, res) => {
       .skip((page - 1) * limit);
     res
       .status(200)
-      .json({ message: " categorysdata fetch succesfully ", data: categorys });
+      .json({ message: " categorys data fetch succesfully ", data: categorys });
   } catch (error) {
     res.status(400).json({ message: "sorry,category is not found" });
   }

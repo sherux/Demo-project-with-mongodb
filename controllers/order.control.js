@@ -65,18 +65,18 @@ const getorderbyadmin = async (req, res) => {
       user_mobile: 1,
     });
 
-    const obj = {
-      pending: [],
-      preparing: [],
-      completed: [],
-      cancelled: [],
-      rejected: [],
-      totalpendingorder: [],
-      totalpreparingorder: [],
-      totalcompletedorder: [],
-      totalcancelledorder: [],
-      totalrejectedorder: [],
-    };
+    // const obj = {
+    //   pending: [],
+    //   preparing: [],
+    //   completed: [],
+    //   cancelled: [],
+    //   rejected: [],
+    //   totalpendingorder: [],
+    //   totalpreparingorder: [],
+    //   totalcompletedorder: [],
+    //   totalcancelledorder: [],
+    //   totalrejectedorder: [],
+    // };
 
     const orderpending = await Order.aggregate([
       { $match: { status: { $in: ["pending"] } } },
@@ -93,41 +93,40 @@ const getorderbyadmin = async (req, res) => {
     const orderrejected = await Order.aggregate([
       { $match: { status: { $in: ["rejected"] } } },
     ]);
-    const countpendingorder = await Order.aggregate([
-      { $match: { status: { $in: ["pending"] } } },
-      { $group: { _id: "$status", pendingorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
-    const countpreparingorder = await Order.aggregate([
-      { $match: { status: { $in: ["preparing"] } } },
-      { $group: { _id: "$status", preparingorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
-    const countcompletedorder = await Order.aggregate([
-      { $match: { status: { $in: ["completed"] } } },
-      { $group: { _id: "$status", completedorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
-    const countcancelledorder = await Order.aggregate([
-      { $match: { status: { $in: ["cancelled"] } } },
-      { $group: { _id: "$status", cancelledorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
-    const countrejectedorder = await Order.aggregate([
-      { $match: { status: { $in: ["rejected"] } } },
-      { $group: { _id: "$status", rejecteddorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
+    const totalpendingorder = await Order.find({
+      status: { $in: ["pending"] },
+    });
+
+    const totalpreparingorder = await Order.find({
+      status: { $in: ["preparing"] },
+    });
+    const totalcompletedorder = await Order.find({
+      status: { $in: ["completed"] },
+    });
+    const totalcancelledorder = await Order.find({
+      status: { $in: ["cancelled"] },
+    });
+    const totalrejectedorder = await Order.find({
+      status: { $in: ["rejected"] },
+    });
+
+    const obj = {
+      pending: [],
+      preparing: [],
+      completed: [],
+      cancelled: [],
+      rejected: [],
+      totalpendingorder: totalpendingorder.length,
+      totalpreparingorder: totalpreparingorder.length,
+      totalcompletedorder: totalcompletedorder.length,
+      totalcancelledorder: totalcancelledorder.length,
+      totalrejectedorder: totalrejectedorder.length,
+    };
     obj.pending = orderpending;
     obj.preparing = orderpreparing;
     obj.completed = ordercompleted;
     obj.cancelled = ordercancelled;
     obj.rejected = orderrejected;
-    obj.totalpendingorder = countpendingorder;
-    obj.totalpreparingorder = countpreparingorder;
-    obj.totalcompletedorder = countcompletedorder;
-    obj.totalcancelledorder = countcancelledorder;
-    obj.totalrejectedorder = countrejectedorder;
 
     res
       .status(200)
@@ -140,19 +139,6 @@ const getorderbyadmin = async (req, res) => {
 // -------------------------------------------getall data by user----------------------
 const getallorder = async (req, res) => {
   try {
-    const obj = {
-      pending: [],
-      preparing: [],
-      completed: [],
-      cancelled: [],
-      rejected: [],
-      totalpending: [],
-      totalpreparing: [],
-      totalcompleted: [],
-      totalcancelled: [],
-      totalrejected: [],
-    };
-
     const orderpending = await Order.aggregate([
       { $match: { status: { $in: ["pending"] } } },
     ]);
@@ -168,41 +154,39 @@ const getallorder = async (req, res) => {
     const orderrejected = await Order.aggregate([
       { $match: { status: { $in: ["rejected"] } } },
     ]);
-    const countpendingorder = await Order.aggregate([
-      { $match: { status: { $in: ["pending"] } } },
-      { $group: { _id: "$status", pendingorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
-    const countpreparingorder = await Order.aggregate([
-      { $match: { status: { $in: ["preparing"] } } },
-      { $group: { _id: "$status", preparingorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
-    const countcompletedorder = await Order.aggregate([
-      { $match: { status: { $in: ["completed"] } } },
-      { $group: { _id: "$status", completedorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
-    const countcancelledorder = await Order.aggregate([
-      { $match: { status: { $in: ["cancelled"] } } },
-      { $group: { _id: "$status", cancelledorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
-    const countrejectedorder = await Order.aggregate([
-      { $match: { status: { $in: ["rejected"] } } },
-      { $group: { _id: "$status", rejecteddorder: { $sum: 1 } } },
-      { $project: { _id: 0 } },
-    ]);
+    const totalpendingorder = await Order.find({
+      status: { $in: ["pending"] },
+    });
+
+    const totalpreparingorder = await Order.find({
+      status: { $in: ["preparing"] },
+    });
+    const totalcompletedorder = await Order.find({
+      status: { $in: ["completed"] },
+    });
+    const totalcancelledorder = await Order.find({
+      status: { $in: ["cancelled"] },
+    });
+    const totalrejectedorder = await Order.find({
+      status: { $in: ["rejected"] },
+    });
+    const obj = {
+      pending: [],
+      preparing: [],
+      completed: [],
+      cancelled: [],
+      rejected: [],
+      totalpendingorder: totalpendingorder.length,
+      totalpreparingorder: totalpreparingorder.length,
+      totalcompletedorder: totalcompletedorder.length,
+      totalcancelledorder: totalcancelledorder.length,
+      totalrejectedorder: totalrejectedorder.length,
+    };
     obj.pending = orderpending;
     obj.preparing = orderpreparing;
     obj.completed = ordercompleted;
     obj.cancelled = ordercancelled;
     obj.rejected = orderrejected;
-    obj.totalpending = countpendingorder;
-    obj.totalpreparing = countpreparingorder;
-    obj.totalcompleted = countcompletedorder;
-    obj.totalcancelled = countcancelledorder;
-    obj.totalrejected = countrejectedorder;
 
     // ---------------- date filter for orders BY user--------------------------------
     if (req.body.start_date && req.body.end_date) {
