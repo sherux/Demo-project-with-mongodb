@@ -1,11 +1,10 @@
 const Restaurants = require("../models/restaurantschema");
 const Order = require("../models/orderschema");
 
-// -------------------------------------------getone data by staff----------------------
+// ------------------------------------- -getone data by staff----------------------
 const getrestaurantsbystaff = async (req, res) => {
   try {
-    const restaurant = await Restaurants.findById(req.params.id);
-    res
+    const restaurant = await Restaurants.findById(req.params.id)
       .status(200)
       .json({ message: "restaurant data fetch succesfully", data: restaurant });
   } catch (error) {

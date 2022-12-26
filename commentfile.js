@@ -215,3 +215,40 @@
 //   $project: { user_mobile: 1, user_name: 1 },
 // },
 //   ]);
+
+// ------------------dagsk[p-]
+// const menu = await Menu.find({});
+
+//     const order = await Order.find({});
+//     const customer = await User.find();
+
+//     const totalorderpending = await Order.find({
+//       status: { $in: ["pending"] },
+//     });
+//     const totalorderpreparing = await Order.find({
+//       status: { $in: ["preparing"] },
+//     });
+//     const totalordercancelled = await Order.find({
+//       status: { $in: ["cancelled"] },
+//     });
+//     const totalorderrejected = await Order.find({
+//       status: { $in: ["rejected"] },
+// });
+// const totalordercompleted = await Order.find({
+//   status: { $in: ["completed"] },
+// });
+
+// const obj = {
+//   totalorderpending: totalorderpending.length,
+//   totalorderpreparing: totalorderpreparing.length,
+//   totalordercancelled: totalordercancelled.length,
+//   totalorderrejected: totalorderrejected.length,
+//   totalordercompleted: totalordercompleted.length,
+// };
+// res.status(200).json({
+//   message: "data fetch succesfully",
+//   totalmenus: menu.length,
+//   totalorders: order.length,
+//   totalcustomers: customer.length,
+//   data: obj,
+// });

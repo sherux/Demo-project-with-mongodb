@@ -8,7 +8,7 @@ const getdata = async (req, res) => {
       select: "user_name user_img -_id ",
     });
     const review2 = await Review.findById(req.params.id).select(
-      "comment img _id rating createdAt updatedAt"
+      "comment img _id rating  updatedAt"
     );
 
     const obj = {
@@ -17,9 +17,12 @@ const getdata = async (req, res) => {
       img: review2.img,
       rating: review2.rating,
       _id: review2._id,
-      createdAt: review.createdAt,
       updatedAt: review.updatedAt,
     };
+
+    // obj["userID"] = obj["user"];
+    // delete obj["user"];
+    // console.log(obj);
 
     res
       .status(200)
@@ -62,8 +65,8 @@ const createdata = async (req, res) => {
       .status(200)
       .json({ message: "review created succesfully", data: newdata });
   } catch (error) {
-    res.status(400).json({ message: "please,required all fields" });
-    // res.status(400).json(error.message);
+    // res.status(400).json({ message: "please,required all fields" });
+    res.status(400).json(error.message);
   }
 };
 // -------------------------------------------update data----------------------

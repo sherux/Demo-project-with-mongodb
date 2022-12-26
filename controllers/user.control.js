@@ -255,7 +255,7 @@ const resetpassword = async (req, res) => {
       console.log(usernewdata, "usernewdata");
       res
         .status(200)
-        .json({ message: "user password updated", data: usernewdata });
+        .json({ message: " password reset succesfully", data: usernewdata });
     } else {
       res.status(200).json({ message: "link is expired" });
     }

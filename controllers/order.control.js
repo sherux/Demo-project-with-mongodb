@@ -154,9 +154,7 @@ const getallorder = async (req, res) => {
     };
 
     const orderpending = await Order.aggregate([
-      {
-        $match: { status: { $in: ["pending"] } },
-      },
+      { $match: { status: { $in: ["pending"] } } },
     ]);
     const orderpreparing = await Order.aggregate([
       { $match: { status: { $in: ["preparing"] } } },
@@ -249,7 +247,6 @@ const createorder = async (req, res) => {
 
   try {
     const order = await neworder.save();
-
     res.status(200).json({ message: "order create succesfully ", data: order });
   } catch (error) {
     res.status(400).json({ message: "please,required all fields" });
