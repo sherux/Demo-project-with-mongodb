@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken");
 
 const staffauth2 = (req, res, next) => {
   const token = req.header("staff-token");
-  if (!token) return res.status(401).json("please go to login page");
+  if (!token)
+    return res.status(401).json({ message: "please go to login page" });
 
   try {
     const varifield = jwt.verify(token, process.env.SECRET_TOKEN3);

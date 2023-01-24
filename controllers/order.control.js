@@ -65,19 +65,6 @@ const getorderbyadmin = async (req, res) => {
       user_mobile: 1,
     });
 
-    // const obj = {
-    //   pending: [],
-    //   preparing: [],
-    //   completed: [],
-    //   cancelled: [],
-    //   rejected: [],
-    //   totalpendingorder: [],
-    //   totalpreparingorder: [],
-    //   totalcompletedorder: [],
-    //   totalcancelledorder: [],
-    //   totalrejectedorder: [],
-    // };
-
     const orderpending = await Order.aggregate([
       { $match: { status: { $in: ["pending"] } } },
     ]);
