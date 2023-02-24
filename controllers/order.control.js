@@ -187,10 +187,12 @@ const getallorder = async (req, res) => {
           },
         },
       ]);
-      if (req.body.end_date == "") {
+      if (req.body.start_date == "") {
         return res.json({ message: "please Enter the end_date" });
       } else if (req.body.start_date == "") {
         return res.json({ message: "please Enter the start_date" });
+      } else if (datebyorder == "") {
+        return res.json({ message: "sorry,Data not found" });
       }
       return res.json(datebyorder);
     } else {
@@ -202,7 +204,6 @@ const getallorder = async (req, res) => {
     res
       .status(400)
       .json({ message: "sorry,orders are not found", data: error.message });
-    // res.status(400).json({ message: error.message });
   }
 };
 
