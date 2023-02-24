@@ -176,7 +176,7 @@ const getallorder = async (req, res) => {
     obj.rejected = orderrejected;
 
     // ---------------- date filter for orders BY user--------------------------------
-    if (req.body.start_date && req.body.end_date) {
+    if (req.body.start_date || req.body.end_date) {
       const datebyorder = await Order.aggregate([
         {
           $match: {
@@ -187,13 +187,18 @@ const getallorder = async (req, res) => {
           },
         },
       ]);
+      if (datebyorder == "") {
+        return res.json({ message: "please required all fields" });
+      }
       return res.json(datebyorder);
     }
     res
       .status(200)
       .json({ message: "orders data fetch succesfully", data: obj });
   } catch (error) {
-    res.status(400).json({ message: "sorry,orders are not found" });
+    res
+      .status(400)
+      .json({ message: "sorry,orders are not found", data: error.message });
     // res.status(400).json({ message: error.message });
   }
 };
