@@ -187,14 +187,17 @@ const getallorder = async (req, res) => {
           },
         },
       ]);
-      if (datebyorder == "") {
-        return res.json({ message: "please required all fields" });
+      if (req.body.end_date == "") {
+        return res.json({ message: "please Enter the end_date" });
+      } else if (req.body.start_date == "") {
+        return res.json({ message: "please Enter the start_date" });
       }
       return res.json(datebyorder);
+    } else {
+      res
+        .status(200)
+        .json({ status: "please,enter the start_date and end_date" });
     }
-    res
-      .status(200)
-      .json({ message: "orders data fetch succesfully", data: obj });
   } catch (error) {
     res
       .status(400)
