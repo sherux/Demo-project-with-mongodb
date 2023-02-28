@@ -176,21 +176,21 @@ const getallorder = async (req, res) => {
     obj.rejected = orderrejected;
 
     // ---------------- date filter for orders BY user--------------------------------
-    if (req.body.start_date || req.body.end_date) {
+    if (req.body.Start_date || req.body.End_date) {
       const datebyorder = await Order.aggregate([
         {
           $match: {
             createdAt: {
-              $gt: new Date(req.body.start_date),
-              $lte: new Date(req.body.end_date),
+              $gt: new Date(req.body.Start_date),
+              $lte: new Date(req.body.End_date),
             },
           },
         },
       ]);
-      if (req.body.start_date == "") {
-        return res.status(200).json({ message: "please,Enter the end_date" });
-      } else if (req.body.start_date == "") {
-        return res.status(200).json({ message: "please,Enter the start_date" });
+      if (req.body.Start_date == "") {
+        return res.status(200).json({ message: "Please,Enter the Start_date" });
+      } else if (req.body.End_date == "") {
+        return res.status(200).json({ message: "Please,Enter the End_date" });
       } else if (datebyorder == "") {
         return res.status(200).json({ message: "Sorry,Data not found" });
       }
@@ -198,7 +198,7 @@ const getallorder = async (req, res) => {
     } else {
       res
         .status(200)
-        .json({ status: "please,enter the start_date and end_date" });
+        .json({ status: "please,Enter the start_date and end_date" });
     }
   } catch (error) {
     res
