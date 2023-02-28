@@ -20,10 +20,6 @@ const getdata = async (req, res) => {
       updatedAt: review.updatedAt,
     };
 
-    // obj["userID"] = obj["user"];
-    // delete obj["user"];
-    // console.log(obj);
-
     res
       .status(200)
       .json({ message: "review data fetch succesfully", data: obj });

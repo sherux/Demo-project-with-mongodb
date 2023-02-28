@@ -127,11 +127,6 @@
 //       .json({ message: "login successfully", token: token });
 //   };
 
-// const sum = (a, ...b) => {
-//   console.log(b);
-// };
-// sum(4, 5, 7, 8, 1, 2, 3);
-
 // const p1 = await Permission.updateMany(
 //   { role_id: element.role_id, module_id: element.module_id },
 

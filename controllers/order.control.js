@@ -188,13 +188,13 @@ const getallorder = async (req, res) => {
         },
       ]);
       if (req.body.start_date == "") {
-        return res.json({ message: "please Enter the end_date" });
+        return res.status(200).json({ message: "please,Enter the end_date" });
       } else if (req.body.start_date == "") {
-        return res.json({ message: "please Enter the start_date" });
+        return res.status(200).json({ message: "please,Enter the start_date" });
       } else if (datebyorder == "") {
-        return res.json({ message: "sorry,Data not found" });
+        return res.status(200).json({ message: "Sorry,Data not found" });
       }
-      return res.json(datebyorder);
+      return res.status(200).json(datebyorder);
     } else {
       res
         .status(200)

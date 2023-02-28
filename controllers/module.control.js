@@ -1,6 +1,6 @@
 const Module = require("../models/moduleschema");
 
-// getall module
+// --------------------------------getall module--------------------------------
 const getalldata2 = async (req, res, next) => {
   try {
     const { page, limit } = req.query;

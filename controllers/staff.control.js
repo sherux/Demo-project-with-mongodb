@@ -82,13 +82,13 @@ const registerdata = async (req, res) => {
     return;
   }
 
-  //checking email exist or not
+  //------checking email exist or not------------------
 
   const emailexist = await Staff.findOne({ staff_email: req.body.staff_email });
   if (emailexist)
     return res.status(400).json({ message: "email alredy exists" });
 
-  // hashpassword
+  // -------------------hashpassword--------------
   const hashpassword = await bcrypt.hash(req.body.staff_password, 12);
 
   const staffs = new Staff({
@@ -110,7 +110,7 @@ const registerdata = async (req, res) => {
     res.status(400).json({ message: "please,required all fields" });
   }
 };
-// --------------------staff login------------
+// -------------------------------staff login----------------------------
 
 const logindata = async (req, res) => {
   const { error } = loginvalidation(req.body);
