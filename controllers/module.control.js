@@ -16,7 +16,7 @@ const getalldata2 = async (req, res, next) => {
   }
   next();
 };
-// -------------------------------------------create data----------------------
+// -----------------------------------create data----------------------
 
 const createdata = async (req, res) => {
   const modules = new Module({

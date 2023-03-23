@@ -1,12 +1,12 @@
 const express = require("express");
 const route = express.Router();
 
-const control = require("../controllers/module.control");
+const { createdata, updatedata } = require("../controllers/module.control");
 
 // rolemangment route
 
-route.post("/create/", control.createdata);
-route.put("/update/:id", control.updatedata);
+route.post("/create/", createdata);
+route.put("/update/:id", updatedata);
 
 // route export
 module.exports = route;

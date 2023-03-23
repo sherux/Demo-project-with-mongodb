@@ -86,6 +86,7 @@ const registerdata = async (req, res) => {
   }
 
   //checking email exist or not
+  console.log(req.body);
   const emailexist = await User.findOne({ user_email: req.body.user_email });
   if (emailexist)
     return res.status(400).json({ message: "email alredy exists" });
@@ -133,6 +134,7 @@ const logindata = async (req, res) => {
   const token = jwt.sign({ id: users.id }, process.env.SECRET_TOKEN, {
     expiresIn: "365d",
   });
+  console.log(process.env.SECRET_TOKEN);
   res
     .header("auth-token", token)
     .json({ message: "login successfully", token: token });
