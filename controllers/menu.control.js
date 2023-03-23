@@ -1,4 +1,4 @@
-const Menu = require("../models/menuschema");
+const Menu = require("../models/menu.schema");
 
 // -------------------------------------------getone data----------------------
 const getdata = async (req, res) => {

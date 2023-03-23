@@ -1,6 +1,6 @@
-const Role = require("../models/roleschema");
-const module2 = require("../models/moduleschema");
-const permission2 = require("../models/permissionschema");
+const Role = require("../models/role.schema");
+const module2 = require("../models/module.schema");
+const permission2 = require("../models/permission.schema");
 
 // -------------------------------------------getone data----------------------
 const getdata = async (req, res) => {

@@ -1,4 +1,4 @@
-const Staff = require("../models/staffschema");
+const Staff = require("../models/staff.schema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const nodeMailer = require("nodemailer");

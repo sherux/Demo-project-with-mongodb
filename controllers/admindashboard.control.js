@@ -1,6 +1,6 @@
-const Menu = require("../models/menuschema");
-const Order = require("../models/orderschema");
-const User = require("../models/userschema");
+const Menu = require("../models/menu.schema");
+const Order = require("../models/order.schema");
+const User = require("../models/user.schema");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 // ------------------------------getall menu---------------------

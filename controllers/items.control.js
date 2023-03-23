@@ -1,4 +1,4 @@
-const Item = require("../models/itemsschema");
+const Item = require("../models/items.schema");
 
 // -------------------------------------------getone data----------------------
 const getitem = async (req, res) => {

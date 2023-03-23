@@ -1,4 +1,4 @@
-const Category = require("../models/categoryschema");
+const Category = require("../models/category.schema");
 
 // -------------------------------------------getone data----------------------
 const getcategory = async (req, res) => {

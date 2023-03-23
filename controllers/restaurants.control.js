@@ -1,5 +1,5 @@
-const Restaurants = require("../models/restaurantschema");
-const Order = require("../models/orderschema");
+const Restaurants = require("../models/restaurant.schema");
+const Order = require("../models/order.schema");
 const ISODate = require("isodate");
 // ------------------------------------- -getone data by staff----------------------
 const getrestaurantsbystaff = async (req, res) => {

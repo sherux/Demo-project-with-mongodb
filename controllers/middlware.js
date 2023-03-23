@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const staff = require("../models/staffschema");
-const permission = require("../models/permissionschema");
+const staff = require("../models/staff.schema");
+const permission = require("../models/permission.schema");
 
 // -------------------------------role wise permission API----------------------
 const staffauth = (module_id, module_name) => {

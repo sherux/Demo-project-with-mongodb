@@ -1,5 +1,5 @@
-const Order = require("../models/orderschema");
-const User = require("../models/userschema");
+const Order = require("../models/order.schema");
+const User = require("../models/user.schema");
 
 // ------------------------------getone order by staff -------------------
 const getorderbystaff = async (req, res) => {

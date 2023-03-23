@@ -1,4 +1,4 @@
-const Permission = require("../models/permissionschema");
+const Permission = require("../models/permission.schema");
 
 // -------------------------------------------getone data----------------------
 const getpermission = async (req, res) => {

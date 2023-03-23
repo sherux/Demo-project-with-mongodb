@@ -1,4 +1,4 @@
-const Module = require("../models/moduleschema");
+const Module = require("../models/module.schema");
 
 // --------------------------------getall module--------------------------------
 const getalldata2 = async (req, res, next) => {

@@ -1,4 +1,4 @@
-const Review = require("../models/reviewschema");
+const Review = require("../models/review.schema");
 
 // -------------------------------------------getone data----------------------
 const getdata = async (req, res) => {
