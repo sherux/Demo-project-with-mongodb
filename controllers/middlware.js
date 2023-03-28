@@ -15,6 +15,7 @@ const staffauth = (module_id, module_name) => {
       const checkid = await staff.find({ _id: { $in: getid } });
 
       const getroleid = checkid[0].roleId;
+      console.log("===================================>", getroleid);
       const getpermission = await permission.find({
         role_id: { $in: getroleid },
       });
