@@ -4,7 +4,7 @@ const User = require("../models/user.schema");
 const ObjectId = require("mongoose").Types.ObjectId;
 
 // ------------------------------getall menu---------------------
-const getdashboard = async (req, res) => {
+const getadmindashboard = async (req, res) => {
   try {
     const restaurantID = req.body.id;
     console.log("id", restaurantID);
@@ -96,5 +96,5 @@ const getdashboard = async (req, res) => {
 };
 
 module.exports = {
-  getdashboard,
+  getadmindashboard,
 };

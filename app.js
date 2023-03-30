@@ -21,6 +21,7 @@ const Modules2 = require("./routes/module.routes");
 const Permission = require("./routes/permission.routes");
 const Review = require("./routes/review.routes");
 const ADMINDASHBOARD = require("./routes/admindashboard.routes");
+
 app.use("/user", Userroute);
 app.use("/user/role", Roleroute);
 app.use("/menu", Menuroute);
@@ -33,7 +34,7 @@ app.use("/staff", Staff);
 app.use("/module", Modules2);
 app.use("/permission", Permission);
 app.use("/review", Review);
-app.use("/admindashboard", ADMINDASHBOARD);
+app.use("/admin/dashboard", ADMINDASHBOARD);
 
 // -----------------------------------connect to the database----------------------
 

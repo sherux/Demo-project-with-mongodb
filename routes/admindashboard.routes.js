@@ -5,7 +5,7 @@ const control = require("../controllers/admindashboard.control");
 
 // rolemangment route
 
-route.get("/", control.getdashboard);
+route.get("/", control.getadmindashboard);
 
 // route export
 module.exports = route;
