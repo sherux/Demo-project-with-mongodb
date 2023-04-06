@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
-const { Point } = require("mongoose-geojson-schema");
 
-const Schema = mongoose.Schema;
 const pointSchema = new mongoose.Schema({
   type: {
     type: String,
