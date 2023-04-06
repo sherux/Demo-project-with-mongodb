@@ -45,7 +45,51 @@ const send = async (user, token) => {
     console.log({ message: "email not sent" });
   }
 };
+// ---------------------serching api--------------------
+const getSerachData = async (req, res) => {
+  try {
+    const { page, limit } = req.query;
+    const useralldata = await User.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit);
 
+    if (req.body.user_name || req.body.user_email) {
+      const user = await User.find({
+        $or: [
+          {
+            user_name: { $regex: `${req.body.user_name}` },
+          },
+          {
+            user_email: { $regex: `${req.body.user_email}` },
+          },
+        ],
+      })
+        .limit(limit * 1)
+        .skip((page - 1) * limit);
+      if (user == "") {
+        return res.status(200).json({
+          message: "sorry,Data not found ",
+        });
+      } else {
+        return res.status(200).json({
+          message: "user data fetch succesfully ",
+          totaluser: user.length,
+          data: user,
+        });
+      }
+    } else {
+      return res.status(200).json({
+        message: "user data fetch succesfully ",
+        totaluser: useralldata.length,
+        data: useralldata,
+      });
+    }
+  } catch (err) {
+    res
+      .status(400)
+      .json({ message: "sorry,users are not found", data: err.message });
+  }
+};
 //---------------------------- authentication--------------------------------------------
 const auth = (req, res) => {
   res.status(200).json({ message: "user authentication", users: req.users });
@@ -66,7 +110,7 @@ const getalldata = async (req, res) => {
     res.status(400).json({ message: "sorry,users are not found" });
   }
 };
-//---------------------------------------get a one data-------------------------------------
+//---------------------------------------get data by id-------------------------------------
 const getonedata = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -111,7 +155,7 @@ const registerdata = async (req, res) => {
     res.status(400).json({ message: "please,required all fields" });
   }
 };
-// -----------------------------------employee a login--------------------------------------
+// -----------------------------------user login api--------------------------------------
 const logindata = async (req, res) => {
   const { error } = loginvalidation(req.body);
   if (error) {
@@ -129,7 +173,7 @@ const logindata = async (req, res) => {
   );
   if (!validpass) return res.status(400).json({ message: "invalid password" });
 
-  // ------------------------------create token and assign--------------------------------------
+  // ------------------------------create token--------------------------------------
 
   const token = jwt.sign({ id: users.id }, process.env.SECRET_TOKEN, {
     expiresIn: "365d",
@@ -270,6 +314,7 @@ const resetpassword = async (req, res) => {
 module.exports = {
   auth,
   getalldata,
+  getSerachData,
   getonedata,
   registerdata,
   logindata,

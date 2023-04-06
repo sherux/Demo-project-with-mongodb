@@ -5,6 +5,8 @@ const userauth = require("../controllers/verifytoken.control");
 const { uploadS3 } = require("../controllers/fileupload.control");
 
 // user route
+route.get("/getseraching", User.getSerachData);
+
 route.get("/auth", userauth, User.auth);
 route.get("/getusers", User.getalldata);
 route.get("/getuser/:id", User.getonedata);
