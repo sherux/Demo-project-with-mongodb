@@ -198,10 +198,13 @@ const UpdateData = async (req, res) => {
       user_city: req.body.user_city,
       user_img: req.file.location,
     };
+    console.log(users);
     const updatedusers = await User.findByIdAndUpdate(req.params.id, users);
-    res.status(200).json({ message: "user is succesfully updated" });
+    res
+      .status(200)
+      .json({ message: "user is succesfully updated", data: updatedusers });
   } catch (err) {
-    res.status(400).json({ message: "sorry,users are not found" });
+    res.status(400).json({ message: err.message });
   }
 };
 

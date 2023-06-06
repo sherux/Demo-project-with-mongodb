@@ -84,8 +84,12 @@ const createdata = async (req, res, next) => {
         permissionss.save();
       }
     });
+    const rr = {
+      data: emp,
+      V: permission,
+    };
 
-    res.status(200).json({ message: "employee create succesfully", data: emp });
+    res.status(200).json({ message: "employee create succesfully", data: rr });
   } catch (error) {
     return res.status(400).json({ message: "sorry,module not found" });
   }

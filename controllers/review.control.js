@@ -46,15 +46,15 @@ const getalldata = async (req, res) => {
 // -----------------------------------------create data----------------------
 
 const createdata = async (req, res) => {
-  const newdata = new Review({
-    userID: req.body.userID,
-    orderID: req.body.orderID,
-    comment: req.body.comment,
-    rating: req.body.rating,
-    img: req.file.location,
-  });
-
   try {
+    const newdata = new Review({
+      userID: req.body.userID,
+      orderID: req.body.orderID,
+      comment: req.body.comment,
+      rating: req.body.rating,
+      img: req.file.location,
+    });
+
     await newdata.save();
 
     res
