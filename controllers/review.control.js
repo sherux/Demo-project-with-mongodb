@@ -68,6 +68,7 @@ const createdata = async (req, res) => {
 // -------------------------------------------update data----------------------
 const updatedata = async (req, res) => {
   try {
+    const reviewId = req.params.id;
     const review = {
       userID: req.body.userID,
       orderID: req.body.orderID,
@@ -76,7 +77,7 @@ const updatedata = async (req, res) => {
       img: req.file.location,
     };
 
-    const data2 = await Review.findByIdAndUpdate(req.params.id, review);
+    const data2 = await Review.findByIdAndUpdate(reviewId, review);
     res.status(200).json({ message: "review succesfully update" });
   } catch (error) {
     res.status(400).json({ message: "sorry,review is not found" });
@@ -86,7 +87,9 @@ const updatedata = async (req, res) => {
 
 const deletedata = async (req, res) => {
   try {
-    const review = await Review.findByIdAndDelete(req.params.id);
+    const reviewId = req.params.id;
+
+    const review = await Review.findByIdAndDelete(reviewId);
 
     res.status(200).json({ message: "review  delete  succesfully " });
   } catch (error) {
