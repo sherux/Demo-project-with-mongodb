@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const User = require("../models/user.schema");
+
 const nodeMailer = require("nodemailer");
 const {
   registervalidation,
@@ -214,7 +215,7 @@ const DeleteData = async (req, res) => {
     const deletusers = await User.findByIdAndDelete(req.params.id);
     res.status(200).json("user is succesfully deleted");
   } catch (err) {
-    res.status(400).json({ message: "sorry,users are not found" });
+    res.status(400).json({ message: err.message });
   }
 };
 
