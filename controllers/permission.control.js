@@ -50,6 +50,7 @@ const updatepermission = async (req, res) => {
 
     res.status(200).json({
       message: "permission update succesfully",
+      data,
     });
   } catch (error) {
     return res
