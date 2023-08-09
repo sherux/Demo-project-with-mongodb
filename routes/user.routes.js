@@ -17,5 +17,6 @@ route.delete("/delete/:id", userauth, User.DeleteData);
 route.post("/change-password", userauth, User.changepassword);
 route.post("/forget-password", User.forgetpassword);
 route.post("/Reset-password", User.resetpassword);
+route.post("/logout", userauth, User.logout);
 
 module.exports = route;

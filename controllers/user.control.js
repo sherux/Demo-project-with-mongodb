@@ -102,6 +102,7 @@ const getalldata = async (req, res) => {
     const { page, limit } = req.query;
 
     const users = await User.find()
+      .sort({ user_name: -1 })
       .limit(limit * 1)
       .skip((page - 1) * limit);
     res
@@ -115,6 +116,7 @@ const getalldata = async (req, res) => {
 const getonedata = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
+
     res
       .status(200)
       .json({ message: "user data fetch succesfully", data: user });
@@ -156,6 +158,22 @@ const registerdata = async (req, res) => {
     res.status(400).json({ message: "please,required all fields" });
   }
 };
+const logout = async (req, res) => {
+  try {
+    const userId = req.users.id;
+    const user = await User.findOne({ where: { id: userId } });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    user.token = null;
+    user.save();
+    res.status(200).json({ message: "Logout Successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 // -----------------------------------user login api--------------------------------------
 const logindata = async (req, res) => {
   const { error } = loginvalidation(req.body);
@@ -192,18 +210,32 @@ const UpdateData = async (req, res) => {
     res.send(error.details[0].message);
     return;
   }
+
   try {
-    const users = {
-      user_mobile: req.body.user_mobile,
-      user_country: req.body.user_country,
-      user_city: req.body.user_city,
-      user_img: req.file.location,
-    };
-    console.log(users);
-    const updatedusers = await User.findByIdAndUpdate(req.params.id, users);
-    res
-      .status(200)
-      .json({ message: "user is succesfully updated", data: updatedusers });
+    if (req.file.location) {
+      const users = {
+        user_mobile: req.body.user_mobile,
+        user_country: req.body.user_country,
+        user_city: req.body.user_city,
+        user_img: req.file.location,
+      };
+      console.log(users);
+      const updatedusers = await User.findByIdAndUpdate(req.params.id, users);
+      res
+        .status(200)
+        .json({ message: "user is succesfully updated", data: updatedusers });
+    } else {
+      const users = {
+        user_mobile: req.body.user_mobile,
+        user_country: req.body.user_country,
+        user_city: req.body.user_city,
+      };
+      console.log(users);
+      const updatedusers = await User.findByIdAndUpdate(req.params.id, users);
+      res
+        .status(200)
+        .json({ message: "user is succesfully updated", data: updatedusers });
+    }
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -327,4 +359,5 @@ module.exports = {
   changepassword,
   forgetpassword,
   resetpassword,
+  logout,
 };
